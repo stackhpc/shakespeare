@@ -1,2 +1,17 @@
 [validation]
 image_ssh_user = centos
+
+[scenario]
+
+#
+# From tempest.config
+#
+# Note(wszumski): udhpc isn't installed by default in centos cloud image
+# DHCP client used by images to renew DCHP lease. If left empty,
+# update operation will be skipped. Supported clients: "udhcpc",
+# "dhclient" (string value)
+# Possible values:
+# udhcpc - <No description provided>
+# dhclient - <No description provided>
+# '' - <No description provided>
+dhcp_client = dhclient
