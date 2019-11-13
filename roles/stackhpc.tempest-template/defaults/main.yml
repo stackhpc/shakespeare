@@ -1,0 +1,8 @@
+---
+# defaults file for tempest-template
+
+tt_config_files: []
+
+tt_output_file:
+
+tt_mode: 0660

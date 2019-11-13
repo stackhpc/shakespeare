@@ -1,0 +1,196 @@
+# Tempest configuration for bare metal, using a fixed network rather than
+# floating IPs to access them.
+
+[auth]
+# Timeout in seconds to wait for the TCP connection to be successful.
+# (integer value)
+#connect_timeout = 60
+
+# Timeout in seconds to wait for the ssh banner. (integer value)
+#ssh_timeout = 300
+
+[compute]
+build_timeout = 1800
+
+# Use a pre-create hook script to ensure enough bare metal nodes are available.
+pre_create_hook = {{ baremetal_pre_create_hook }}
+
+[compute-feature-enabled]
+# NOTE(wszumski): features need for ironic disabled based on https://docs.openstack.org/nova/rocky/user/support-matrix.html
+# NOTE(wszumski): migration features have been proposed
+
+#
+# From tempest.config
+#
+
+# If false, skip disk config tests (boolean value)
+#disk_config = true
+
+# DEPRECATED: A list of enabled compute extensions with a special
+# entry all which indicates every extension is enabled. Each extension
+# should be specified with alias name. Empty list indicates all
+# extensions are disabled (list value)
+# This option is deprecated for removal.
+# Its value may be silently ignored in the future.
+# Reason: The Nova extensions API and mechanism is deprecated. This
+# option will be removed when all releases supported by tempest no
+# longer contain the Nova extensions API and mechanism.
+#api_extensions = all
+
+# Does the test environment support changing the admin password?
+# (boolean value)
+#change_password = false
+
+# Does the test environment support obtaining instance serial console
+# output? (boolean value)
+#console_output = true
+# NOTE(wszumski): We fail on https://github.com/openstack/tempest/blob/ab3f72b21497bdc913cf92673d858e5767a5dd93/tempest/scenario/manager.py#L507
+console_output = false
+
+# Does the test environment support resizing? When you enable this
+# feature, 'flavor_ref_alt' should be set and it should refer to a
+# larger flavor than 'flavor_ref' one. (boolean value)
+#resize = false
+resize = false
+
+# Does the test environment support pausing? (boolean value)
+#pause = true
+pause = false
+
+# Does the test environment support shelving/unshelving? (boolean
+# value)
+#shelve = true
+shelve = false
+
+# Does the test environment support suspend/resume? (boolean value)
+#suspend = true
+suspend = false
+
+# Does the test environment support cold migration? (boolean value)
+#cold_migration = true
+cold_migration = false
+
+# Does the test environment support live migration? (boolean value)
+#live_migration = true
+live_migration = false
+
+# Does the test environment support live migrating VM back and forth
+# between different versions of nova-compute? (boolean value)
+#live_migrate_back_and_forth = false
+
+# Does the test environment support metadata service? Ignored unless
+# validation.run_validation=true. (boolean value)
+#metadata_service = true
+
+# Does the test environment use block devices for live migration
+# (boolean value)
+#block_migration_for_live_migration = false
+
+# Does the test environment support block migration with Cinder iSCSI
+# volumes. Note: libvirt >= 1.2.17 is required to support this if
+# using the libvirt compute driver. (boolean value)
+#block_migrate_cinder_iscsi = false
+
+# Enable VNC console. This configuration value should be same as
+# nova.conf: vnc.enabled (boolean value)
+#vnc_console = false
+# NOTE(wszumski): rally sets this to true
+vnc_console = false
+
+# Expected VNC server name (WebSockify, nginx, etc) in response
+# header. (string value)
+#vnc_server_header = WebSockify
+
+# Enable Spice console. This configuration value should be same as
+# nova.conf: spice.enabled (boolean value)
+#spice_console = false
+
+# Enable RDP console. This configuration value should be same as
+# nova.conf: rdp.enabled (boolean value)
+#rdp_console = false
+
+# Enable serial console. This configuration value should be the same
+# as nova.conf: serial_console.enabled (boolean value)
+#serial_console = false
+
+# Does the test environment support instance rescue mode? (boolean
+# value)
+#rescue = true
+#NOTE(wszumski): Failed to rescue instance a588e829-6096-4cce-a51e-2f741bbb21fa for node 4b99fcb8-81c4-4be8-9745-fb2facd2148d: Validation failed. Error: Driver ipmi does not support rescue (disabled or not implemented). (HTTP 500)
+rescue = false
+
+# Enables returning of the instance password by the relevant server
+# API calls such as create, rebuild or rescue. This configuration
+# value should be same as nova.conf: DEFAULT.enable_instance_password
+# (boolean value)
+#enable_instance_password = true
+enable_instance_password = true
+
+# Does the test environment support dynamic network interface
+# attachment? (boolean value)
+#interface_attach = true
+
+# Does the test environment support creating snapshot images of
+# running instances? (boolean value)
+#snapshot = true
+snapshot = false
+
+# DEPRECATED: Does the test environment have the nova cert running?
+# (boolean value)
+# This option is deprecated for removal.
+# Its value may be silently ignored in the future.
+# Reason: On Nova side, the nova-cert service is deprecated and the
+# service will be removed as early as Ocata.
+#nova_cert = false
+
+# Does the test environment support server personality (boolean value)
+#personality = false
+
+# Does the test environment support attaching an encrypted volume to a
+# running server instance? This may depend on the combination of
+# compute_driver in nova and the volume_driver(s) in cinder. (boolean
+# value)
+#attach_encrypted_volume = true
+attach_encrypted_volume = false
+
+# Enable special configuration drive with metadata. (boolean value)
+#config_drive = true
+
+# A list of enabled filters that Nova will accept as hints to the
+# scheduler when creating a server. If the default value is overridden
+# in nova.conf by the test environment (which means that a different
+# set of filters is enabled than what is included in Nova by default),
+# then this option must be configured to contain the same filters that
+# Nova uses in the test environment. A special entry 'all' indicates
+# all filters that are included with Nova are enabled. If using 'all',
+# be sure to enable all filters in nova.conf, as tests can fail in
+# unpredictable ways if Nova's and Tempest's enabled filters don't
+# match. Empty list indicates all filters are disabled. The full list
+# of enabled filters is in nova.conf:
+# filter_scheduler.enabled_filters. (list value)
+# Deprecated group/name - [compute-feature-enabled]/scheduler_available_filters
+#scheduler_enabled_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter
+
+# Does the test environment support in-place swapping of volumes
+# attached to a server instance? (boolean value)
+#swap_volume = false
+
+# Does the test environment support volume-backed live migration?
+# (boolean value)
+#volume_backed_live_migration = false
+
+# Does the test environment support attaching a volume to more than
+# one instance? This depends on hypervisor and volume backend/type and
+# compute API version 2.60. (boolean value)
+#volume_multiattach = false
+
+[service_available]
+# So that we can run with higher concurrency
+{% if enable_nova is defined %}
+nova = "{{ enable_nova }}"
+{% endif %}
+
+[validation]
+# Timeout in seconds to wait for ping to succeed. (integer value)
+#ping_timeout = 120
+ping_timeout = 900

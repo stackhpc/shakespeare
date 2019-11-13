@@ -1,0 +1,7 @@
+[volume]
+# Should be greater than the size of disk property on the flavor
+# tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_image_defined_boot_from_volume
+# Details: {u'message': u'Volume is smaller than the minimum size specified in image metadata.
+# Volume size is 1073741824 bytes, minimum size is 10737418240 bytes.', u'code': 400}
+volume_size = {{ volume_size | default(12) }}
+storage_protocol = ceph

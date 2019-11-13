@@ -1,0 +1,32 @@
+# Always include this
+
+[DEFAULT]
+openstack_client_http_timeout = 300
+
+[auth]
+# Bare metal flavors tend to quickly consume the default quota. Override to infinite.
+compute_quotas=cores:-1,ram:-1
+
+[identity]
+v3_endpoint_type = publicURL
+
+[compute]
+{% if flavor_ref is defined %}
+flavor_ref = "{{ flavor_ref }}"
+{% endif %}
+
+{% if flavor_ref_alt is defined %}
+flavor_ref_alt = "{{ flavor_ref_alt }}"
+{% endif %}
+
+{% if image_ref is defined %}
+image_ref = "{{ image_ref }}"
+{% endif %}
+
+{% if image_ref_alt is defined %}
+image_ref_alt = "{{ image_ref_alt }}"
+{% endif %}
+
+[service-clients]
+# workaround NGS timeouts in create_bulk_networks
+http_timeout = 600
