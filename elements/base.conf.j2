@@ -30,3 +30,10 @@ image_ref_alt = "{{ image_ref_alt }}"
 [service-clients]
 # workaround NGS timeouts in create_bulk_networks
 http_timeout = 600
+
+{% if services is defined %}
+[service_available]
+{% for service, enabled in services.items() %}
+{{ service }} = "{{ enabled }}"
+{% endfor %}
+{% endif %}
