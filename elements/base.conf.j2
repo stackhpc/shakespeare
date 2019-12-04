@@ -37,3 +37,7 @@ http_timeout = 600
 {{ service }} = "{{ enabled }}"
 {% endfor %}
 {% endif %}
+
+{% if base_free_form_extras is defined %}
+{{ base_free_form_extras }}
+{% endif %}
