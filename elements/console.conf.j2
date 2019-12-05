@@ -1,0 +1,14 @@
+# Include this if you have enabled serial consoles
+#
+# This requires the [serial_console]enabled = True in nova.conf
+#
+# Enable the serial console feature.
+#
+# In order to use this feature, the service ``nova-serialproxy`` needs to run.
+# This service is typically executed on the controller node.
+#  (boolean value)
+#enabled = false
+
+[compute-feature-enabled]
+console_output = true
+
