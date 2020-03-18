@@ -1,5 +1,10 @@
 # Tempest configuration for virtual machines
 
+[compute]
+# Needed for live migration tests not to be skipped
+# e.g tempest.api.compute.admin.test_live_migration.LiveMigrationTest.test_live_block_migration
+min_compute_nodes = 2
+
 [compute-feature-enabled]
 resize = true
 # Rally sets live_migration to false
