@@ -1,0 +1,11 @@
+# Include this element at the end to override any configuration options.
+# You then set the variable, overrides_free_form_extras, in your recipe, e.g:
+#
+# overrides_free_form_extras: |-
+#   [service_available]
+#   cinder: "false"
+
+{% if overrides_free_form_extras is defined %}
+{{ overrides_free_form_extras }}
+{% endif %}
+
