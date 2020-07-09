@@ -1,2 +1,2 @@
 [volume-feature-enabled]
-backup = {{ volume_backup | bool | default(true) }}
+backup = {{ volume_backup | default(true) | bool }}

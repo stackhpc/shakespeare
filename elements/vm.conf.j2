@@ -11,4 +11,4 @@ resize = true
 live_migration = true
 # Rally expects shared storage by default. However we often configure virtual
 # machines to use local storage for their root disks.
-block_migration_for_live_migration = {{ block_migration_for_live_migration | bool | default(true) }}
+block_migration_for_live_migration = {{ block_migration_for_live_migration | default(true) | bool }}
