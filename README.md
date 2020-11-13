@@ -9,7 +9,7 @@ Generates tempest configuration overrides for rally
 ```
 python -m venv venv
 source venv/bin/activate
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### for python 2:
@@ -17,7 +17,7 @@ pip install requirements.txt
 ```
 virtualenv venv
 source venv/bin/activate
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
