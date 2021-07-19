@@ -1,0 +1,12 @@
+# Include this is you are running wallaby
+
+[compute]
+# Specify microversions to run tests that depend on new APIs. 2.88 is Wallaby.
+# See https://docs.openstack.org/nova/latest/reference/api-microversion-history.html
+min_microversion = 2.1
+max_microversion = 2.88
+
+[volume]
+# https://docs.openstack.org/cinder/latest/contributor/api_microversion_history.html#maximum-in-wallaby
+min_microversion = 3.0
+max_microversion = 3.64
