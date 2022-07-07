@@ -194,3 +194,5 @@ nova = "{{ enable_nova }}"
 # Timeout in seconds to wait for ping to succeed. (integer value)
 #ping_timeout = 120
 ping_timeout = 900
+# Baremetal nodes are slow to boot after going ACTIVE
+ssh_timeout = 900
