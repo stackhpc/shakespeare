@@ -12,6 +12,11 @@
   when: not item | exists
   with_items: "{{ tt_config_files }}"
 
+- name: ensure output directory exists
+  file:
+    path: "{{ tt_output_file | dirname }}"
+    state: directory
+
 - name: merge_configs
   merge_configs:
     sources: "{{ tt_config_files }}"
