@@ -4,24 +4,13 @@ Generates tempest configuration overrides for rally
 
 ## Installation
 
-### for python 3:
-
 ```
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### for python 2:
-
-```
-virtualenv venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ## Usage
-
 
 ### Download the recipes for your deployment
 
