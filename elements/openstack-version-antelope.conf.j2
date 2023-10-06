@@ -1,0 +1,12 @@
+# Include this if you are running antelope
+
+[compute]
+# Specify microversions to run tests that depend on new APIs. 2.95 is Antelope.
+# See https://docs.openstack.org/nova/latest/reference/api-microversion-history.html
+min_microversion = 2.1
+max_microversion = 2.95
+
+[volume]
+# https://docs.openstack.org/cinder/latest/contributor/api_microversion_history.html#maximum-in-zed-and-2023-1
+min_microversion = 3.0
+max_microversion = 3.70
